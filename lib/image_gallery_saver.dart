@@ -12,16 +12,20 @@ class ImageGallerySaver {
   static Future saveImage(Uint8List imageBytes) async {
     assert(imageBytes != null);
     final result =
-    await _channel.invokeMethod('saveImageToGallery', imageBytes);
+        await _channel.invokeMethod('saveImageToGallery', imageBytes);
     return result;
   }
 
   /// Save the PNG，JPG，JPEG image or video located at [file] to the local device media gallery.
   static Future saveFile(String file) async {
     assert(file != null);
-    final result =
-    await _channel.invokeMethod('saveFileToGallery', file);
+    final result = await _channel.invokeMethod('saveFileToGallery', file);
     return result;
   }
 
+  /// 获取 android 设备 系统相册地址
+  static Future getAndroidAlbumPath() async {
+    final result = await _channel.invokeMethod('getAndroidAlbumPath');
+    return result;
+  }
 }
